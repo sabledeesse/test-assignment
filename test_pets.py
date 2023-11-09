@@ -1,5 +1,4 @@
 import requests
-import json
 
 PET_ID = 202308
 URL = 'https://petstore.swagger.io/v2/pet/'
