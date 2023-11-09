@@ -5,7 +5,10 @@ from urllib.parse import urljoin
 PET_ID = 202308
 URL = 'https://petstore.swagger.io/v2/pet/'
 s = Session()
-def adding_new_pet() -> str:
+
+
+def add_new_pet() -> str:
+
     #Тест на добавление нового питомца
     print('\n Test for adding new pet \n')
     pet = {
@@ -38,7 +41,7 @@ def adding_new_pet() -> str:
         print('Error retrieving data:', response.text)
 
 
-def getting_new_pet(new_pet: str):
+def get_new_pet(new_pet: str):
 
     #Тест на получение добавленного питомца
     print('--------------------------------------------')
@@ -58,7 +61,8 @@ def getting_new_pet(new_pet: str):
         print('Error retrieving data:', response.text)
 
 
-def deleting_new_pet():
+def delete_new_pet():
+
     #Тест на удаление добавленного питомца
     print('--------------------------------------------')
     print('\n Test for deleting new pet \n')
@@ -77,7 +81,8 @@ def deleting_new_pet():
         print('Error retrieving data:', response.text)
 
 
-def searching_deleted_pet():
+def search_deleted_pet():
+
     #Тест на поиск удаленного питомца
     print('--------------------------------------------')
     print('\n Test for searching deleted pet \n')
@@ -92,7 +97,9 @@ def searching_deleted_pet():
     else:
         print('Error retrieving data:', response.text)
 
-def deleating_deleted_pet():
+
+def delete_deleted_pet():
+
     #Тест на удаление удаленного питомца
     print('--------------------------------------------')
     print('\n Test for adding new pet \n')
@@ -106,8 +113,8 @@ def deleating_deleted_pet():
 
 
 def tests():
-    new_pet = adding_new_pet()
-    getting_new_pet(new_pet=new_pet)
-    deleting_new_pet()
-    searching_deleted_pet()
-    deleating_deleted_pet()
+    new_pet = add_new_pet()
+    get_new_pet(new_pet=new_pet)
+    delete_new_pet()
+    search_deleted_pet()
+    delete_deleted_pet()

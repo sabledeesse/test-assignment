@@ -1,4 +1,4 @@
-from test_pets import (adding_new_pet)
+from test_pets import (add_new_pet)
 from urllib.parse import urljoin
 from client import Session
 import json
@@ -11,7 +11,7 @@ ORDER_ID = 10
 s = Session()
 
 
-def purchasing_new_pet():
+def purchase_new_pet():
     #Тест на покупку нового питомца
     print('--------------------------------------------')
     print('\n Test for buying new pet \n')
@@ -129,8 +129,8 @@ def find_non_existent_order():
 
 
 def tests():
-    new_pet = adding_new_pet()
-    purchasing_new_pet()
+    new_pet = add_new_pet()
+    purchase_new_pet()
     find_order()
     delete_order()
     delete_non_existent_order()

@@ -10,7 +10,7 @@ ORDER_ID = 10
 s = Session()
 
 
-def creating_new_user():
+def create_new_user():
     #Тест на добавление нового пользователя
     print('--------------------------------------------')
     print('\n Test for creating new user \n')
@@ -37,7 +37,7 @@ def creating_new_user():
         print('Error retrieving data:', response.text)
 
 
-def getting_new_user(new_user: str):
+def get_new_user(new_user: str):
     #Тест на поиск нового пользователя
     print('--------------------------------------------')
     print('\n Test for getting new user \n')
@@ -52,7 +52,7 @@ def getting_new_user(new_user: str):
         print('Error retrieving data:', response.text)
 
 
-def logging_in_new_user():
+def log_in_new_user():
     #Тест на логин нового пользователя
     print('--------------------------------------------')
     print('\n Test for logging in new user \n')
@@ -89,7 +89,7 @@ def logging_in_new_user():
         print('Error retrieving data:', response.text)
 
 
-def logging_out_new_user():
+def log_out_new_user():
     #Тест на разлогин нового пользователя
     print('--------------------------------------------')
     print('\n Test for logging out new user \n')
@@ -104,7 +104,7 @@ def logging_out_new_user():
         print('Error retrieving data:', response.text)
 
 
-def deleting_new_user():
+def delete_new_user():
     #Тест на удаление нового пользователя
     print('--------------------------------------------')
     print('\n Test for deleting new user \n')
@@ -125,7 +125,7 @@ def deleting_new_user():
         print('Error retrieving data:', response.text)
 
 
-def getting_deleted_user():
+def get_deleted_user():
     #Тест на удаление нового пользователя
     print('--------------------------------------------')
     print('\n Test for getting deleted user \n')
@@ -141,7 +141,7 @@ def getting_deleted_user():
         print('Error retrieving data:', response.text)
 
 
-def deleting_deleted_user():
+def delete_deleted_user():
     #Тест на удаление удаленного пользователя
     print('--------------------------------------------')
     print('\n Test for deleting deleted user \n')
@@ -157,17 +157,17 @@ def deleting_deleted_user():
 
 
 def tests():
-    new_user = creating_new_user()
+    new_user = create_new_user()
     sleep(0.3)
-    getting_new_user(new_user=new_user)
+    get_new_user(new_user=new_user)
     sleep(0.1)
-    logging_in_new_user()
+    log_in_new_user()
     sleep(0.1)
-    logging_out_new_user()
+    log_out_new_user()
     sleep(0.2)
-    deleting_new_user()
+    delete_new_user()
     sleep(0.1)
-    getting_deleted_user()
+    get_deleted_user()
     sleep(0.1)
-    deleting_deleted_user()
+    delete_deleted_user()
 
