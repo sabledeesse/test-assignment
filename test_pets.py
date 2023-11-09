@@ -1,9 +1,10 @@
-import requests
 from time import sleep
+from client import Session
+from urllib.parse import urljoin
 
 PET_ID = 202308
 URL = 'https://petstore.swagger.io/v2/pet/'
-
+s = Session()
 def adding_new_pet() -> str:
     #Тест на добавление нового питомца
     print('\n Test for adding new pet \n')
@@ -25,13 +26,12 @@ def adding_new_pet() -> str:
         ],
         "status": "pending"
     }
-
-    response = requests.post(URL, json=pet)
+    response = s.post(URL, json=pet)
 
     assert response.status_code == 200
     if response.status_code == 200:
         data = response.json()
-        print('Pet {} added successfully:'.format(PET_ID), data)
+        print('Pet {PET_ID} added successfully:', data)
         print('Status code is ', response.status_code)
         return data
     else:
@@ -46,13 +46,13 @@ def getting_new_pet(new_pet: str):
 
     #URL = 'https://petstore.swagger.io/v2/pet/{}'.format(PET_ID)
     ok_json = new_pet
-    response = requests.get(URL + PET_ID.__str__())
+    response = s.get(urljoin(URL, str(PET_ID)))
 
     assert response.status_code == 200
     assert response.json() == ok_json
     if response.status_code == 200:
         data = response.json()
-        print('Pet {} found:'.format(PET_ID), data)
+        print('Pet {PET_ID} found:', data)
         print('Status code is ', response.status_code)
     else:
         print('Error retrieving data:', response.text)
@@ -63,15 +63,15 @@ def deleting_new_pet():
     print('--------------------------------------------')
     print('\n Test for deleting new pet \n')
 
-    ok_json = {'code': 200, 'type': 'unknown', 'message': PET_ID.__str__()}
+    ok_json = {'code': 200, 'type': 'unknown', 'message': str(PET_ID)}
 
-    response = requests.delete(URL + PET_ID.__str__())
+    response = s.delete(urljoin(URL, str(PET_ID)))
 
     assert response.status_code == 200
     assert response.json() == ok_json
     if response.status_code == 200:
         data = response.json()
-        print('Pet {} deleted:'.format(PET_ID), data)
+        print('Pet {PET_ID} deleted:', data)
         print('Status code is ', response.status_code)
     else:
         print('Error retrieving data:', response.text)
@@ -83,11 +83,11 @@ def searching_deleted_pet():
     print('\n Test for searching deleted pet \n')
 
     ok_json = {'code': 1, 'type': 'error', 'message': 'Pet not found'}
-    response = requests.get(URL + PET_ID.__str__())
+    response = s.get(urljoin(URL, str(PET_ID)))
     assert response.status_code == 404
     assert response.json() == ok_json
     if response.status_code == 404:
-        print('Pet {} not found'.format(PET_ID))
+        print('Pet {PET_ID} not found')
         print('Status code is', response.status_code)
     else:
         print('Error retrieving data:', response.text)
@@ -96,10 +96,10 @@ def deleating_deleted_pet():
     #Тест на удаление удаленного питомца
     print('--------------------------------------------')
     print('\n Test for adding new pet \n')
-    response = requests.delete(URL + PET_ID.__str__())
+    response = s.delete(urljoin(URL, str(PET_ID)))
     assert response.status_code == 404
     if response.status_code == 404:
-        print('Pet {} not found'.format(PET_ID))
+        print('Pet {PET_ID} not found')
         print('Status code is', response.status_code)
     else:
         print('Error retrieving data:', response.text)
