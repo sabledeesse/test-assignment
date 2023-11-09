@@ -38,7 +38,7 @@ def getting_new_user(new_user: str):
     #Тест на поиск нового пользователя
     print('--------------------------------------------')
     print('\n Test for getting new user \n')
-    response = requests.get(URL + USER_ID.__str__())
+    response = requests.get(URL + USER_ID)
     assert response.status_code == 200
     assert response.json() == new_user
     if response.status_code == 200:
@@ -100,6 +100,7 @@ def logging_out_new_user():
     else:
         print('Error retrieving data:', response.text)
 
+
 def deleting_new_user():
     #Тест на удаление нового пользователя
     print('--------------------------------------------')
@@ -109,7 +110,7 @@ def deleting_new_user():
         "type": "unknown",
         "message": USER_ID
     }
-    response = requests.delete(URL + USER_ID.__str__())
+    response = requests.delete(URL + USER_ID)
     assert response.status_code == 200
     assert response.json() == ok_json
 
@@ -126,7 +127,7 @@ def getting_deleted_user():
     print('--------------------------------------------')
     print('\n Test for getting deleted user \n')
     ok_json = {'code': 1, 'message': 'User not found', 'type': 'error'}
-    response = requests.get(URL + USER_ID.__str__())
+    response = requests.get(URL + USER_ID)
     assert response.status_code == 404
     assert response.json() == ok_json
     if response.status_code == 404:
@@ -142,7 +143,7 @@ def deleting_deleted_user():
     print('--------------------------------------------')
     print('\n Test for deleting deleted user \n')
 
-    response = requests.delete(URL + USER_ID.__str__())
+    response = requests.delete(URL + USER_ID)
     assert response.status_code == 404
 
     if response.status_code == 404:
@@ -154,10 +155,16 @@ def deleting_deleted_user():
 
 def tests():
     new_user = creating_new_user()
+    sleep(0.1)
     getting_new_user(new_user=new_user)
+    sleep(0.1)
     logging_in_new_user()
+    sleep(0.1)
     logging_out_new_user()
+    sleep(0.2)
     deleting_new_user()
+    sleep(0.1)
     getting_deleted_user()
+    sleep(0.1)
     deleting_deleted_user()
 
