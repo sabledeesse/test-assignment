@@ -1,9 +1,12 @@
 from test_pets import (adding_new_pet)
 import requests
 import json
+from time import sleep
 PET_ID = 202308
 URL = 'https://petstore.swagger.io/v2/store/'
 ORDER_ID = 10
+
+
 def purchasing_new_pet():
     #Тест на покупку нового питомца
     print('--------------------------------------------')

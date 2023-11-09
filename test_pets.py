@@ -1,4 +1,5 @@
 import requests
+from time import sleep
 
 PET_ID = 202308
 URL = 'https://petstore.swagger.io/v2/pet/'
@@ -110,4 +111,3 @@ def tests():
     deleting_new_pet()
     searching_deleted_pet()
     deleating_deleted_pet()
-
